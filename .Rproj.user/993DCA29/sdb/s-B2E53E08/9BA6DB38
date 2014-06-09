@@ -1,0 +1,16 @@
+{
+    "contents" : "## Functions to calculate and cache the inverse of a matrix\n\n## Takes a numeric matrix x and wraps it in an object with\n#  4 functions.\n#  set() - set x to a different matrix\n#  get() - return the raw matrix data\n#  setInv() - cache the inverse of x\n#  getInv() - return cached inverse of x\n\nmakeCacheMatrix <- function(x = matrix()) {\n  inv <- NULL\n  \n  set <- function(setX) {\n    x <<- setX\n    inv <<- NULL\n  }\n  \n  get <- function() x\n  \n  setInv <- function(newInv) inv <<- newInv\n  \n  getInv <- function() inv\n  \n  list(set = set, get = get,\n       setInv = setInv,\n       getInv = getInv)  \n}\n\n\n## Takes a makeCacheMatrix object x and calculates\n#  the inverse of the wrapped matrix\n#  Check to see if the inverse has been cached.\n#  If so, return the cached inverse; otherwise\n#  calculate the inverse and cache it\n\ncacheSolve <- function(x, ...) {\n        ## Return a matrix that is the inverse of 'x'\n  inverse <- x$getInv()\n  if (!is.null(inverse)) {\n    message(\"Getting cached inverse\")\n    return(inverse)\n  }\n  rawMatrix <- x$get()\n  inverse <- solve(rawMatrix)\n  x$setInv(inverse)\n  inverse\n}\n",
+    "created" : 1402311721169.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1622516151",
+    "id" : "9BA6DB38",
+    "lastKnownWriteTime" : 1402314805,
+    "path" : "~/GitHub/ProgrammingAssignment2/cachematrix.R",
+    "project_path" : "cachematrix.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
